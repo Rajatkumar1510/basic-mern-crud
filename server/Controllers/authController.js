@@ -9,7 +9,7 @@ export const register = async (req, res) => {
     if (!name || !email || !password) {
       res.send({ message: "All fields are required" });
     }
-    const oldUser = User.findOne({ email });
+    const oldUser = await User.findOne({ email });
     if (oldUser) return res.send({ message: "user already exists" });
 
     const hashPassword = await bcrypt.hash(password, 12);
@@ -29,13 +29,13 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     if (!email || !password) {
       res.send({ message: "All fields are required" });
     }
-    const existingUser = User.findOne({ email });
+    const existingUser = await User.findOne({ email });
     if (!existingUser)
       return res.send({ message: "User does not exist, Please Signup first" });
 
@@ -54,6 +54,7 @@ export const login = (req, res) => {
     console.log(error);
   }
 };
-const get_user = (req, res)=>{
-  const user = User.findById(req.user.id)
-}
+export const get_user = async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");
+  return res.send(user);
+};
