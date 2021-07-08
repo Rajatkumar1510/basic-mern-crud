@@ -13,3 +13,5 @@ router.get("/items/:id", getProduct);
 router.post("/items", addProduct);
 router.put("/items/:id", updateProduct);
 router.delete("items/:id", deleteProduct);
+
+export default router;
