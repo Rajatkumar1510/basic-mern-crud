@@ -14,14 +14,14 @@ export const getProduct = async (res, req) => {
 };
 
 export const addProduct = async (req, res) => {
-  const { title, file, description, price } = req.body;
-  const newProduct = await new Product.save({
-    title,
-    file,
-    description,
-    price,
-  });
-  return res.send(newProduct);
+  const post = req.body;
+  const newProduct = new Product({ ...post });
+  try {
+    await newProduct.save();
+    return res.send(newProduct);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const updateProduct = async (req, res) => {

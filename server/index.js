@@ -1,20 +1,39 @@
 import express from "express";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 
+import authRoutes from "./Routes/auth.js";
+import cartRoutes from "./Routes/cart.js";
+import orderRoutes from "./Routes/order.js";
+import productRoutes from "./Routes/product.js";
 const app = express();
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 const PORT = process.env.PORT || 4000;
 const url =
   "mongodb+srv://naruto:naruto@cluster0.ddp57.mongodb.net/ecommerce?retryWrites=true&w=majority";
 
-app.get("/", (req, res) => res.send(`Hello There`));
+// Routes*****
 
+// Home Route
+app.get("/", (req, res) => res.send(`Hello There`));
+// auth Routes
+app.use("/", authRoutes);
+// cart Routes
+app.use("/", cartRoutes);
+
+// order Routes
+app.use("/", orderRoutes);
+
+// product Routes
+app.use("/", productRoutes);
+
+// Routes END****
 mongoose
   .connect(url, {
-    useNewUrlParser: true, 
+    useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => app.listen(PORT))
-  .then((res) => console.log(`Server is running on ${PORT}`))
+  .then(() => console.log(`Server is running on ${PORT}`))
   .catch((err) => console.log(err));
-
-
