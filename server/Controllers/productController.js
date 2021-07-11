@@ -7,11 +7,11 @@ export const getProducts = async (req, res) => {
   return res.send(products);
 };
 
-export const getProduct = async (res, req) => {
-  const { id } = req.params;
-  const product = await Product.findById(id);
-  return res.send(product);
-};
+// export const getProduct = async (res, req) => {
+//   const { id } = await req.body;
+//   const product = await Product.findById(id);
+//   return res.send(product);
+// };
 
 export const addProduct = async (req, res) => {
   const post = req.body;
@@ -26,10 +26,10 @@ export const addProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { title, file, description, price } = req.body;
+  const { title, file, description, price, category } = req.body;
 
-  const updatedProduct = { title, file, description, price, _id: id };
-  await Product.findByIdAndUpdate(id, updatedProduct);
+  const updatedProduct = { title, file, description, price, category, _id: id };
+  await Product.findByIdAndUpdate(id, updatedProduct, );
   res.send(updatedProduct);
 };
 

@@ -18,15 +18,15 @@ const url =
 // Home Route
 app.get("/", (req, res) => res.send(`Hello There`));
 // auth Routes
-app.use("/", authRoutes);
+app.use("/api", authRoutes);
 // cart Routes
-app.use("/", cartRoutes);
+app.use("/api", cartRoutes);
 
 // order Routes
-app.use("/", orderRoutes);
+app.use("/api", orderRoutes);
 
 // product Routes
-app.use("/", productRoutes);
+app.use("/api", productRoutes);
 
 // Routes END****
 mongoose
