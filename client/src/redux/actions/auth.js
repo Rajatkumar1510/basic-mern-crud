@@ -9,7 +9,6 @@ import {
   USER_LOADED,
   USER_LOADING,
 } from "../types";
-import { showErrors } from "./error";
 
 export const loadUser = () => async (dispatch) => {
   // user Loading
