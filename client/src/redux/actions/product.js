@@ -37,13 +37,13 @@ export const updateProduct = (id, updatedProduct) => async (dispatch) => {
   );
   dispatch({
     type: UPDATE_PRODUCT,
-    payload: data,
+    payload: { data, id },
   });
 };
 export const deleteProduct = (id) => async (dispatch) => {
-  const { data } = await axios.get(`http://localhost:4000/api/products/${id}`);
+  await axios.get(`http://localhost:4000/api/products/${id}`);
   dispatch({
     type: DELETE_PRODUCT,
-    payload: data,
+    payload: id,
   });
 };
