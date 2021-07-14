@@ -1,12 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-
+import cors from "cors";
 import authRoutes from "./Routes/auth.js";
 import cartRoutes from "./Routes/cart.js";
 import orderRoutes from "./Routes/order.js";
 import productRoutes from "./Routes/product.js";
 const app = express();
+app.use(cors());
+
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 const PORT = process.env.PORT || 4000;

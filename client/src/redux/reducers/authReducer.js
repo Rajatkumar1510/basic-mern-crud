@@ -48,6 +48,12 @@ const authReducer = (state = intialState, action) => {
         user: null,
         isAuthenticated: null,
       };
+    case LOGOUT_SUCCESS:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        user: null,
+      };
 
     default:
       return state;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Paper,
@@ -6,27 +6,57 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { registerUser } from "../redux/actions/auth";
 
 const Register = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  // const user = useSelector((state) => state);
+  // console.log(user);
+  const [formInput, setFormInput] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(registerUser(formInput));
+    // history.push("/");
+  };
+  const handleChange = (e) => {
+    setFormInput({ ...formInput, [e.target.name]: e.target.value });
+  };
   return (
     <Container>
       <Paper>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Typography variant="h6">Register Yourself </Typography>
-          <TextField name="title" variant="outlined" label="Title" fullWidth />
           <TextField
-            name="message"
+            name="email"
             variant="outlined"
-            label="Message"
+            label="Email"
             fullWidth
-            multiline
-            rows={4}
+            value={formInput.email}
+            onChange={handleChange}
           />
           <TextField
-            name="tags"
+            name="name"
             variant="outlined"
-            label="Tags (coma separated)"
+            label="Name"
             fullWidth
+            value={formInput.name}
+            onChange={handleChange}
+          />
+          <TextField
+            name="password"
+            variant="outlined"
+            label="Password"
+            fullWidth
+            type="password"
+            value={formInput.password}
+            onChange={handleChange}
           />
 
           <Button
@@ -37,9 +67,6 @@ const Register = () => {
             fullWidth
           >
             Submit
-          </Button>
-          <Button variant="contained" color="secondary" size="small" fullWidth>
-            Clear
           </Button>
         </form>
       </Paper>

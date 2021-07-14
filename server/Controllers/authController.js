@@ -54,7 +54,16 @@ export const login = async (req, res) => {
     console.log(error);
   }
 };
-export const get_user = async (req, res) => {
-  const user = await User.findById(req.user.id).select("-password");
-  return res.send(user);
+// export const get_user = async (req, res) => {
+//   const { id } = req.params;
+
+//   const user = await User.findById(id).select("-password");
+//   return res.send(user);
+// };
+
+export const get_users = async (req, res) => {
+  const users = await User.find().sort({
+    createdAt: -1,
+  });
+  return res.send(users);
 };
