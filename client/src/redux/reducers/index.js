@@ -5,7 +5,7 @@ import orderReducer from "./orderReducers";
 import productReducer from "./productReducers";
 const allReducers = combineReducers({
   product: productReducer,
-  auth: authReducer,
+  user: authReducer,
   cart: cartReducer,
   order: orderReducer,
 });

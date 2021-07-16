@@ -13,8 +13,7 @@ import { loginUser } from "../redux/actions/auth";
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state);
-  console.log(user);
+  const user = useSelector((state) => state.user);
   const [formInput, setFormInput] = useState({
     name: "",
     email: "",
@@ -23,7 +22,8 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(formInput));
-    history.push("/");
+    // history.push("/");
+    console.log(user);
   };
   const handleChange = (e) => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value });
