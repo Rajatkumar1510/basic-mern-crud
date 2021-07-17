@@ -7,7 +7,7 @@ const Logout = () => {
   const dispatch = useDispatch();
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(logout);
+    dispatch(logout());
   };
   return (
     <div>

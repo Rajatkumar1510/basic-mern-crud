@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { useSelector } from "react-redux";
 const Navbar = () => {
-  const user = useSelector((state) => state.user);
+  const {user} = useSelector((state) => state.user);
   return (
     <div className="navbar">
-      {user.existingUser ? (
+      {user?.existingUser ? (
         <>
           <div className="logo">
             <Typography component={Link} to="/" variant='body'>
-              eCommerce
+              eCommerce {user?.existingUser.name}
             </Typography>
           </div>
           <div className="options">
