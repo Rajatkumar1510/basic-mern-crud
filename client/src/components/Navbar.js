@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Logout from "./Logout";
@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { useSelector } from "react-redux";
 const Navbar = () => {
-  const {user} = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   return (
     <div className="navbar">
       {user?.existingUser ? (
         <>
           <div className="logo">
-            <Typography component={Link} to="/" variant='body'>
+            <h1 component={Link} to="/" variant="body">
               eCommerce {user?.existingUser.name}
-            </Typography>
+            </h1>
           </div>
           <div className="options">
             <div className="options_link">
